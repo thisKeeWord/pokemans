@@ -106,4 +106,4 @@ class Pokemon extends React.Component {
 	}
 };
 
-module.exports = Pokemon;
+export default Pokemon;

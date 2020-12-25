@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, hashHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import Pokemon from './Pokemon';
 import Pokedex from './Pokedex';
 

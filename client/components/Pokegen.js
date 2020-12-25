@@ -19,4 +19,4 @@ class Pokegen extends React.Component {
 	}
 };
 
-module.exports = Pokegen;
+export default Pokegen;

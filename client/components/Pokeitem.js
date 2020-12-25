@@ -16,4 +16,4 @@ class Pokeitem extends React.Component {
 	}
 };
 
-module.exports = Pokeitem;
+export default Pokeitem;

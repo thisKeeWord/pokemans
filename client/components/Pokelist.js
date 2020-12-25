@@ -22,4 +22,4 @@ class Pokelist extends React.Component {
 	}
 };
 
-module.exports = Pokelist;
+export default Pokelist;
