@@ -4,7 +4,7 @@
   "description": "",
   "main": "Gulpfile.js",
   "scripts": {
-    "prestart": "gulp",
+    "prestart": "gulp & npm install",
     "start": "nodemon server.js"
   },
   "author": "",
