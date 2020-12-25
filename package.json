@@ -4,7 +4,7 @@
   "description": "",
   "main": "Gulpfile.js",
   "scripts": {
-    "start": "./node_modules/webpack/bin/webpack.js -p --progress && node server.js",
+    "start": "webpack --config ./webpack.config.js --progress && node server.js",
     "dev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
