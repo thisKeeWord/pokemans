@@ -8,7 +8,7 @@ class Pokelist extends React.Component {
 		const that = this;
 		let list = this.props.list.map((element, index) => {
 			return (
-				<div className="dexByGen">
+				<div className="dexByGen" key={index}>
 					<h1 className="generation">Gen {index + 1}</h1>
 					<Pokegen pokemonByGen={element} handler={that.props.select} />
 				</div>

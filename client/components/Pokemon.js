@@ -24,11 +24,11 @@ class Pokemon extends React.Component {
 	render() {
 		const that = this;
 		let pokemonImg = null;
-		let description = Object.keys(this.state.description).map((key,value) => {
+		let description = Object.keys(this.state.description).map((key,index) => {
 			if (that.state.description[key] !== null && (key === 'forms' || key === 'abilities' || key === 'stats' || key === 'weight' || key === 'moves' || key === 'height' || key === 'id' || key === 'order' || key === 'base_experience' || key === 'types' || key === 'sprites')) {
 				if (Array.isArray(that.state.description[key])) {
 					return (
-						<div className="descriptor">
+						<div className="descriptor" key={index}>
 							<span className="key" id="information">{key.replace(/-/g, " ")}</span>
 							<div className="key">
 								{that.state.description[key].map((elem, index) => {
@@ -78,11 +78,11 @@ class Pokemon extends React.Component {
 					);
 				}
 				else if (key === 'sprites') {
-					pokemonImg = <img src={that.state.description[key].front_default}></img>					
+					pokemonImg = <img src={that.state.description[key].front_default} key={index}></img>					
 				}
 				else {
 					return (
-						<div className="descriptor">
+						<div className="descriptor" key={index}>
 							<span className="key" id="information">{key.replace(/_/g, " ")}</span>
 							<div className="key">{that.state.description[key].toString()}</div>
 						</div>
