@@ -24,10 +24,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './index.html',
-      filename: './index.html',
-    }),
     new CopyPlugin([
       { from: './client/style/style.css' },
     ]),
