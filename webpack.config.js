@@ -29,7 +29,7 @@ module.exports = {
       filename: './index.html',
     }),
     new CopyPlugin([
-      { from: './client/style//style.css' },
+      { from: './client/style/style.css' },
     ]),
   ],
   devServer: {
