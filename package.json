@@ -4,10 +4,10 @@
   "description": "",
   "main": "Gulpfile.js",
   "scripts": {
-    "prestart": "npm install",
     "start": "webpack --config ./webpack.config.js --progress && node server.js",
     "dev": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "npm install --dev"
   },
   "author": "",
   "license": "ISC",
