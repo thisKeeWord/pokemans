@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 
 const Pokedex: FunctionComponent = () => {
-	const [list, setList] = useState()
+	const [list, setList] = useState<any[]>()
 	const [pokemon, setPokemon] = useState<Record<any, any>>({})
 	const [loading, setLoading] = useState<boolean>(false)
 
@@ -18,48 +18,27 @@ const Pokedex: FunctionComponent = () => {
 			setLoading(true)
 
 			try {
+				const gensData = await axios.get('https://pokeapi.co/api/v2/generation/?limit=1500')
+				let promises: any[] = []
+				for (const data of gensData.data.results) {
+					try {
+						const resultData = await axios.get(data.url)
+						const sortedData = resultData.data.info.pokemon_species.sort((a,b) => {
+							return a.url.replace(/\D/g,'').slice(1) - b.url.replace(/\D/g,'').slice(1);
+						});
 
-			
-			const gensData = await axios.get('https://pokeapi.co/api/v2/generation/?limit=1500')
-			// copy and paste code from tldr
-			for (const data of gensData.data.results) {
+						promises.push(sortedData)
+					} catch (error) {
+						console.log(error)
+					}
+				}
 
-			}
-			} catch( error) {
+				setList(promises)
+			} catch(error) {
 				console.log(error)
 			}
 		}
-	})
-
-	componentDidMount() {
-		const that = this;
-		let gens;
-		$.get('https://pokeapi.co/api/v2/generation/?limit=1500', data => {
-			let allPokes = [];
-			gens = data.results;
-			gens.forEach((elem, index) => {
-				$.ajax({
-					method: 'GET',
-					url: elem.url,
-					success: info => {
-						let pokes = info.pokemon_species;
-						pokes = pokes.sort((a,b) => {
-							return a.url.replace(/\D/g,'').slice(1) - b.url.replace(/\D/g,'').slice(1);
-						});
-						allPokes.push(pokes)
-						if (gens.length === allPokes.length) {
-							$("#pokedex").removeClass("spinner");
-							that.setState({
-								list: allPokes,
-								pokemon: {}
-							});			
-						}		
-					},
-					async: false // make request synchronous
-				});
-			});
-		});
-	}
+	}, [])
 
 	selectPokemon(pokemon) {
 		const that = this;
