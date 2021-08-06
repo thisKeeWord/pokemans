@@ -12,10 +12,7 @@ const Pokedex: FunctionComponent = () => {
 	const [pokemon, setPokemon] = useState<Record<any, any>>({})
 	const [loading, setLoading] = useState<boolean>(false)
 
-	componentWillMount() {
-		$("#pokedex").addClass("spinner");
-	}
-
+ // need to add spinner class to #pokedex
 	useEffect(() =>{
 		const fetchData = async () => {
 			setLoading(true)
@@ -24,7 +21,10 @@ const Pokedex: FunctionComponent = () => {
 
 			
 			const gensData = await axios.get('https://pokeapi.co/api/v2/generation/?limit=1500')
-			gensData.data.results.forEach()
+			// copy and paste code from tldr
+			for (const data of gensData.data.results) {
+
+			}
 			} catch( error) {
 				console.log(error)
 			}
@@ -38,7 +38,6 @@ const Pokedex: FunctionComponent = () => {
 			let allPokes = [];
 			gens = data.results;
 			gens.forEach((elem, index) => {
-				let eachGen = [];
 				$.ajax({
 					method: 'GET',
 					url: elem.url,
