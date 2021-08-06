@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
+import Pokemon from './Pokemon';
+import Pokedex from './Pokedex';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+
+const App = () =>  {
+    return (
+      <Router history={hashHistory}>
+        <Route exact path="/" component={Pokedex} />
+        <Route path="/:name" component={Pokemon} />
+      </Router>
+    )
+};
+
+ReactDOM.render(<App />, document.getElementById('pokedex'));
