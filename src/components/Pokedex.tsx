@@ -1,11 +1,6 @@
 import React, {FunctionComponent, useEffect, useState } from 'react';
 import axios from 'axios';
-import Pokemon from './Pokemon';
 import Pokelist from './Pokelist';
-
-import $ from 'jquery';
-
-
 
 const Pokedex: FunctionComponent = () => {
 	const [list, setList] = useState<any[]>()
@@ -29,33 +24,35 @@ const Pokedex: FunctionComponent = () => {
 
 						promises.push(sortedData)
 					} catch (error) {
+						// TODO: error handling
 						console.log(error)
 					}
 				}
 
 				setList(promises)
-			} catch(error) {
+			} catch (error) {
+				// TODO: error handling
 				console.log(error)
 			}
 		}
 	}, [])
 
-	selectPokemon(pokemon) {
-		const that = this;
-		$.get(pokemon.url, data => {
-			that.setState({
-				pokemon: {
+	const selectPokemon = async (pokemon: Record<any, any>) => {
+		try {
+			const pokemonData = await axios.get(pokemon.url)
+				setPokemon({
 					name: pokemon.name,
-					description: data
-				}
+					description: pokemonData.data
 			});
-		});
+		} catch (error) {
+			// TODO: error handling
+			console.log(error)
+		}
 	}
 
-	render() {
 		return (
 			<div className="pokeList">
-				<Pokelist list={this.state.list} select={this.selectPokemon.bind(this)} />
+				<Pokelist list={list} select={selectPokemon} />
 			</div>
 		);
 	}
