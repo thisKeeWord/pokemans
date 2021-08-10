@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
-import Pokemon from './Pokemon';
-import Pokedex from './Pokedex';
+import { Route } from 'react-router';
+import { HashRouter } from 'react-router-dom';
+import Pokemon from './components/Pokemon';
+import Pokedex from './components/Pokedex';
 
 
 
 const App = () =>  {
     return (
-      <Router history={hashHistory}>
+      <HashRouter>
         <Route exact path="/" component={Pokedex} />
         <Route path="/:name" component={Pokemon} />
-      </Router>
+      </HashRouter>
     )
 };
 

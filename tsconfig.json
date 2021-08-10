@@ -22,7 +22,7 @@
     "typeRoots": ["node_modules/@types", "./types"],
   },
   "include": [
-    "api",
+    "src/*",
     "client",
     "server",
     "**/*.ts", 
