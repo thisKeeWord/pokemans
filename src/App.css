@@ -1,38 +1,71 @@
-.App {
+/* body {
+    height: 100%;
+    width: 100%;
+} */
+
+.goBack {
+  height: 50px;
+  width: 50px;
+  background-image: url('./src/images/back-arrow.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  
+}
+
+.descriptor {
+  border: 1px solid black;
+  justify-content: space-around;
+  text-align: center;
+  display: flex;
+}
+
+.key {
+  width: 50%;
+  line-height: 1.7;
+  font-size: 1.01em;
+}
+
+#information {
+  border-right: 1px solid black;
+}
+
+.onTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dexByGen {
+  width: 14%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pokesGen {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.list {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: darkslategrey;
+  line-height: 1.4;
+}
+
+a:hover {
+  color: lightslategrey;
+}
+
+.spinner {
+  background-image: url("./src/images/pokeball-gif-24.gif");
+  background-color: white;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
 }

@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useEffect, useState } from 'react';
 import axios from 'axios';
-import Pokelist from './Pokelist';
+import Pokegen from './Pokegen';
 
 const Pokedex: FunctionComponent = () => {
 	const [list, setList] = useState<any[]>()
@@ -50,12 +50,18 @@ const Pokedex: FunctionComponent = () => {
 		}
 	}
 
-		return (
-			<div className="pokeList">
-				<Pokelist list={list} select={selectPokemon} />
+	return (
+		<div className="pokeList">
+			<div className="list">
+				{list?.map((element, index) => (
+					<div className="dexByGen" key={index}>
+						<h1 className="generation">Gen {index + 1}</h1>
+						<Pokegen pokemonByGen={element} handler={selectPokemon} />
+					</div>
+				))}
 			</div>
-		);
-	}
+		</div>
+	);
 };
 
 export default Pokedex;
