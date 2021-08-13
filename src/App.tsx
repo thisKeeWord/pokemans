@@ -5,15 +5,13 @@ import { HashRouter } from 'react-router-dom';
 import Pokemon from './components/Pokemon';
 import Pokedex from './components/Pokedex';
 
-
-
-const App = () =>  {
-    return (
-      <HashRouter>
-        <Route exact path="/" component={Pokedex} />
-        <Route path="/:name" component={Pokemon} />
-      </HashRouter>
-    )
-};
+const App = () => (
+  <HashRouter>
+    <Route exact path="/" component={Pokedex} />
+    <Route path="/:name" component={Pokemon} />
+  </HashRouter>
+);
 
 ReactDOM.render(<App />, document.getElementById('pokedex'));
+
+export default App

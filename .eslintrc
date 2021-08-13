@@ -33,6 +33,7 @@
     "no-plusplus": 0,
     "max-len": [1, 140],
     "react/no-unused-prop-types": "warn",
+    "semi": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
