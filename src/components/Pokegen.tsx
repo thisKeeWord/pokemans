@@ -8,7 +8,7 @@ interface PokegenProps {
 }
 
 const Pokegen: FunctionComponent<PokegenProps> = ({ pokemonByGen, handler }: PokegenProps) => {
-  const genStack = pokemonByGen.map((pokemon) => (
+  const genStack = pokemonByGen?.map((pokemon) => (
     <Link to={`/${pokemon.name}`} key={pokemon.name}>{pokemon.name}</Link>
   ));
 

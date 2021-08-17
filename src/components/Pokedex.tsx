@@ -18,7 +18,8 @@ const Pokedex: FunctionComponent = () => {
         const fetchResults = await Promise.all(gensData.data.results.map(async (data) => {
           try {
             const resultData = await axios.get(data.url)
-            const sortedData = resultData.data.info.pokemon_species.sort(
+            console.log(resultData, 'yo')
+            const sortedData = resultData.data.pokemon_species.sort(
               (a, b) => a.url.replace(/\D/g, '').slice(1) - b.url.replace(/\D/g, '').slice(1),
             );
 

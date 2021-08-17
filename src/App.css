@@ -6,7 +6,7 @@
 .goBack {
   height: 50px;
   width: 50px;
-  background-image: url('./src/images/back-arrow.png');
+  background-image: url('./images/back-arrow.png');
   background-repeat: no-repeat;
   background-size: contain;
   -webkit-margin-before: 0.83em;
@@ -61,11 +61,17 @@ a:hover {
 }
 
 .spinner {
-  background-image: url("./src/images/pokeball-gif-24.gif");
+  background-image: url("./images/pokeball-gif-24.gif");
   background-color: white;
   justify-content: center;
   background-repeat: no-repeat;
   width: 500px;
   height: 500px;
   margin: 0 auto;
+}
+
+.pokemon-content {
+  margin: 0 auto;
+  width: 80%;
+  overflow-wrap:normal;
 }

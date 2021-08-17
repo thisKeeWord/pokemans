@@ -37,12 +37,12 @@ const Pokemon: FunctionComponent = () => {
       <h3>
         Sprite:
         {' '}
-        <img src={description.sprites.front_default} alt={description.sprites.front_default} />
+        <img src={description.sprites?.front_default} alt={description.sprites?.front_default} />
       </h3>
-      <h5>
+      <div className="pokemon-content">
         {Object.keys(description).map((key, index) => {
           // eslint-disable-next-line max-len
-          if (!!description[key] && (['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'order', 'base_experience', 'types', 'sprites'].includes(key))) {
+          if (!!description[key] && (['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'order', 'base_experience', 'types'].includes(key))) {
             if (Array.isArray(description[key])) {
               return (
                 <div className="descriptor" key={index}>
@@ -55,9 +55,10 @@ const Pokemon: FunctionComponent = () => {
                         }
 
                         return (
-                          <span className="key">
+                          <span className="trait">
                             {elem.move.name.replace(/-/g, ' ')}
-                            ,&nbsp;&nbsp;
+                            ,
+                            {' '}
                           </span>
                         )
                       }
@@ -67,9 +68,10 @@ const Pokemon: FunctionComponent = () => {
                         }
 
                         return (
-                          <span className="key">
+                          <span className="trait">
                             {elem.name}
-                            ,&nbsp;&nbsp;
+                            ,
+                            {' '}
                           </span>
                         )
                       }
@@ -79,18 +81,18 @@ const Pokemon: FunctionComponent = () => {
                         }
 
                         return (
-                          <span className="key">
+                          <span className="trait">
                             {elem.ability.name}
-                            ,&nbsp;&nbsp;
+                            ,
+                            {' '}
                           </span>
                         )
                       }
                       if (elem.stat) {
                         if (idx === description[key].length - 1) {
                           return (
-                            <span className="key">
+                            <span className="trait">
                               {elem.stat.name}
-                              {' '}
                               :
                               {' '}
                               {elem.base_stat}
@@ -99,9 +101,8 @@ const Pokemon: FunctionComponent = () => {
                         }
 
                         return (
-                          <span className="key">
+                          <span className="trait">
                             {elem.stat.name}
-                            {' '}
                             :
                             {' '}
                             {elem.base_stat}
@@ -111,13 +112,14 @@ const Pokemon: FunctionComponent = () => {
                       }
                       if (elem.type) {
                         if (idx === description[key].length - 1) {
-                          return <span className="key">{elem.type.name.replace(/-/g, ' ')}</span>
+                          return <span className="trait">{elem.type.name.replace(/-/g, ' ')}</span>
                         }
 
                         return (
-                          <span className="key">
+                          <span className="trait">
                             {elem.type.name.replace(/-/g, ' ')}
-                            ,&nbsp;&nbsp;
+                            ,
+                            {' '}
                           </span>
                         )
                       }
@@ -139,7 +141,7 @@ const Pokemon: FunctionComponent = () => {
 
           return null
         })}
-      </h5>
+      </div>
     </div>
   );
 };

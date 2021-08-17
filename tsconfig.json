@@ -14,19 +14,23 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
-    "jsx": "react",
-    "typeRoots": ["node_modules/@types", "./types"],
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "typeRoots": [
+      "node_modules/@types",
+      "./types"
+    ],
+    "noEmit": true
   },
   "include": [
     "src/*",
     "client",
     "server",
-    "**/*.ts", 
-    "**/*.tsx",
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "**/*.js"
