@@ -46,7 +46,7 @@ const Pokemon: FunctionComponent = () => {
             if (Array.isArray(description[key])) {
               return (
                 <div className="descriptor" key={index}>
-                  <span className="key" id="information">{key.replace(/-/g, ' ')}</span>
+                  <span className="key" id="information" key={key + index}>{key.replace(/-/g, ' ')}</span>
                   <div className="key">
                     {description[key].map((elem, idx) => {
                       if (elem.move) {
