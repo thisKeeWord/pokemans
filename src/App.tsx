@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import ReactDOM from 'react-dom';
 import { Route } from 'react-router';
 import { HashRouter } from 'react-router-dom';
 import Pokemon from './components/Pokemon';

@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 
 interface PokegenProps {
   pokemonByGen: any[]
-  // eslint-disable-next-line no-unused-vars
-  handler: (pokemon: Record<any, any>) => void
 }
 
-const Pokegen: FunctionComponent<PokegenProps> = ({ pokemonByGen, handler }: PokegenProps) => {
+const Pokegen: FunctionComponent<PokegenProps> = ({ pokemonByGen }: PokegenProps) => {
   const genStack = pokemonByGen?.map((pokemon) => (
     <Link to={`/${pokemon.name}`} key={pokemon.name}>{pokemon.name}</Link>
   ));

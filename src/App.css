@@ -1,8 +1,3 @@
-/* body {
-    height: 100%;
-    width: 100%;
-} */
-
 .goBack {
   height: 50px;
   width: 50px;
@@ -37,17 +32,22 @@
 }
 
 .dexByGen {
-  width: 14%;
+  text-align: center;
+  width: 20%;
+  display: inline-block;
+  margin: 1px;
+  padding: 0 29px;
+}
+
+.list {
   text-align: center;
 }
 
 .pokesGen {
   display: flex;
   flex-direction: column;
-}
-
-.list {
-  display: flex;
+  overflow-y: scroll;
+  height: 500px;
 }
 
 a {

@@ -5,22 +5,31 @@ import axios from 'axios'
 
 const Pokemon: FunctionComponent = () => {
   // eslint-disable-next-line semi
-  const [description, setDescription] = useState<Record<any, any>>({})
+  const [pokemon, setPokemon] = useState<Record<any, any>>({})
   const [error, setError] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const params = useParams() as Record<any, any>
 
   useEffect(() => {
+    setLoading(true)
+    error && setError('')
     const getPokemon = async () => {
       try {
         const results = await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
-        setDescription(results.data)
+        setPokemon(results.data)
       } catch (err) {
-        setError(err.message)
+        setError(`Could not retrieve information about ${params.name}. ${err.message}`)
+      } finally {
+        setLoading(false)
       }
     }
 
     getPokemon()
   }, [])
+
+  if (loading) {
+    return <div className="spinner" />
+  }
 
   return (
     <div>
@@ -37,20 +46,21 @@ const Pokemon: FunctionComponent = () => {
       <h3>
         Sprite:
         {' '}
-        <img src={description.sprites?.front_default} alt={description.sprites?.front_default} />
+        <img src={pokemon.sprites?.front_default} alt={pokemon.sprites?.front_default} />
       </h3>
+      {error && <div>{error}</div>}
       <div className="pokemon-content">
-        {Object.keys(description).map((key, index) => {
+        {Object.keys(pokemon).map((key, index) => {
           // eslint-disable-next-line max-len
-          if (!!description[key] && (['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'order', 'base_experience', 'types'].includes(key))) {
-            if (Array.isArray(description[key])) {
+          if (!!pokemon[key] && (['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'order', 'base_experience', 'types'].includes(key))) {
+            if (Array.isArray(pokemon[key])) {
               return (
                 <div className="descriptor" key={index}>
                   <span className="key" id="information" key={key + index}>{key.replace(/-/g, ' ')}</span>
                   <div className="key">
-                    {description[key].map((elem, idx) => {
+                    {pokemon[key].map((elem, idx) => {
                       if (elem.move) {
-                        if (idx === description[key].length - 1) {
+                        if (idx === pokemon[key].length - 1) {
                           return <span className="key">{elem.move.name.replace(/-/g, ' ')}</span>
                         }
 
@@ -63,7 +73,7 @@ const Pokemon: FunctionComponent = () => {
                         )
                       }
                       if (elem.name) {
-                        if (idx === description[key].length - 1) {
+                        if (idx === pokemon[key].length - 1) {
                           return <span className="key">{elem.name}</span>
                         }
 
@@ -76,7 +86,7 @@ const Pokemon: FunctionComponent = () => {
                         )
                       }
                       if (elem.ability) {
-                        if (idx === description[key].length - 1) {
+                        if (idx === pokemon[key].length - 1) {
                           return <span className="key">{elem.ability.name}</span>
                         }
 
@@ -89,7 +99,7 @@ const Pokemon: FunctionComponent = () => {
                         )
                       }
                       if (elem.stat) {
-                        if (idx === description[key].length - 1) {
+                        if (idx === pokemon[key].length - 1) {
                           return (
                             <span className="trait">
                               {elem.stat.name}
@@ -111,7 +121,7 @@ const Pokemon: FunctionComponent = () => {
                         )
                       }
                       if (elem.type) {
-                        if (idx === description[key].length - 1) {
+                        if (idx === pokemon[key].length - 1) {
                           return <span className="trait">{elem.type.name.replace(/-/g, ' ')}</span>
                         }
 
@@ -134,7 +144,7 @@ const Pokemon: FunctionComponent = () => {
             return (
               <div className="descriptor" key={index}>
                 <span className="key" id="information">{key.replace(/_/g, ' ')}</span>
-                <div className="key">{description[key].toString()}</div>
+                <div className="key">{pokemon[key].toString()}</div>
               </div>
             );
           }
