@@ -1,0 +1,77 @@
+.goBack {
+  height: 50px;
+  width: 50px;
+  background-image: url('./images/back-arrow.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  
+}
+
+.descriptor {
+  border: 1px solid black;
+  justify-content: space-around;
+  text-align: center;
+  display: flex;
+}
+
+.key {
+  width: 50%;
+  line-height: 1.7;
+  font-size: 1.01em;
+}
+
+#information {
+  border-right: 1px solid black;
+}
+
+.onTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dexByGen {
+  text-align: center;
+  width: 20%;
+  display: inline-block;
+  margin: 1px;
+  padding: 0 29px;
+}
+
+.list {
+  text-align: center;
+}
+
+.pokesGen {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 500px;
+}
+
+a {
+  text-decoration: none;
+  color: darkslategrey;
+  line-height: 1.4;
+}
+
+a:hover {
+  color: lightslategrey;
+}
+
+.spinner {
+  background-image: url("./images/pokeball-gif-24.gif");
+  background-color: white;
+  justify-content: center;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.pokemon-content {
+  margin: 0 auto;
+  width: 80%;
+  overflow-wrap:normal;
+}
