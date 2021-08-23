@@ -25,6 +25,7 @@ const Pokedex: FunctionComponent = () => {
     setOpenDrawer(open)
   }
 
+  // switch between generation list and generation's pokemon list
   const list = (): ReactElement => {
     const arr = generation ? genList[generation as number - 1] : genList;
     const clickListener = (gen: number | string) => {
