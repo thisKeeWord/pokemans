@@ -16,7 +16,7 @@ const Pokedex: FunctionComponent = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [menuName, setMenuName] = useState<number | string | null>(null);
+  const [generation, setGeneration] = useState<number | string>(0);
   const [selectedPokemon, setSelectedPokemon] = useState<string | number>('')
 
   console.log(selectedPokemon, 'asdf123')
@@ -26,10 +26,10 @@ const Pokedex: FunctionComponent = () => {
   }
 
   const list = (): ReactElement => {
-    const arr = menuName !== null ? genList[menuName] : genList;
+    const arr = generation ? genList[generation as number - 1] : genList;
     const clickListener = (gen: number | string) => {
-      if (menuName === null) {
-        return setMenuName(gen);
+      if (!generation) {
+        return setGeneration(gen as number + 1);
       }
       setSelectedPokemon(gen)
     };
@@ -38,9 +38,9 @@ const Pokedex: FunctionComponent = () => {
       <div role="presentation" onKeyDown={() => toggleDrawer(false)}>
         <List>
           {arr?.map((el, index: number) => (
-            <ListItem button key={index} onClick={() => clickListener(menuName !== null ? el.name : index)}>
-              <ListItemText primary={menuName !== null ? el.name : `Gen ${index + 1}`} />
-              {menuName === null && <ChevronRightIcon />}
+            <ListItem button key={index} onClick={() => clickListener(generation ? el.name : index)}>
+              <ListItemText primary={generation ? el.name : `Gen ${index + 1}`} />
+              {!generation && <ChevronRightIcon />}
             </ListItem>
           ))}
         </List>
@@ -94,8 +94,8 @@ const Pokedex: FunctionComponent = () => {
           open={openDrawer}
           onClose={() => toggleDrawer(false)}
         >
-          {menuName !== null && (
-          <ListItem button onClick={() => setMenuName(null)}>
+          {generation !== null && (
+          <ListItem button onClick={() => setGeneration(0)}>
             <ListItemText primary="Back to main menu" />
             <ChevronLeftIcon />
           </ListItem>
