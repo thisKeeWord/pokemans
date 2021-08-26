@@ -9,7 +9,7 @@ import './App.css'
 const App: FunctionComponent = () => (
   <HashRouter>
     <Route exact path="/" component={Pokedex} />
-    <Route path="/:name" component={Pokemon} />
+    <Route path="/:name" component={Pokedex} />
   </HashRouter>
 );
 

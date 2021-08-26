@@ -1,6 +1,7 @@
 import React, {
   FunctionComponent, ReactElement, useEffect, useState,
 } from 'react';
+import { useHistory, useLocation } from 'react-router';
 import axios from 'axios';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -9,7 +10,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Pokegen from './Pokegen';
 
 const Pokedex: FunctionComponent = () => {
   const [genList, setGenList] = useState<any[]>([])
@@ -18,8 +18,10 @@ const Pokedex: FunctionComponent = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
   const [generation, setGeneration] = useState<number | string>(0);
   const [selectedPokemon, setSelectedPokemon] = useState<string | number>('')
-
-  console.log(selectedPokemon, 'asdf123')
+  const history = useHistory();
+  const location = useLocation();
+  const { pathname, state } = location;
+  const path = pathname.split('/')[1];
 
   const toggleDrawer = (open: boolean) => {
     setOpenDrawer(open)
@@ -32,6 +34,7 @@ const Pokedex: FunctionComponent = () => {
       if (!generation) {
         return setGeneration(gen as number + 1);
       }
+      history.push(`/${gen}`, { updated: true });
       setSelectedPokemon(gen)
     };
 
@@ -81,42 +84,34 @@ const Pokedex: FunctionComponent = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    if (path && !state) {
+      setSelectedPokemon(path)
+    }
+  }, [path]);
+
   if (loading) {
     return <div className="spinner" />
   }
 
   return (
     <div className="pokeList">
-      <div>
-        {error && <span>{error}</span>}
-        <Button onClick={() => toggleDrawer(true)}>View By Generation</Button>
-        <Drawer
-          anchor="left"
-          open={openDrawer}
-          onClose={() => toggleDrawer(false)}
-        >
-          {generation !== null && (
-          <ListItem button onClick={() => setGeneration(0)}>
-            <ListItemText primary="Back to main menu" />
-            <ChevronLeftIcon />
-          </ListItem>
-          )}
-          {list()}
-        </Drawer>
-      </div>
-
-      {/* <div className="list">
-        {genList?.map((element, index) => (
-          <div className="dexByGen" key={index}>
-            <h1 className="generation">
-              Gen
-              {' '}
-              {index + 1}
-            </h1>
-            <Pokegen pokemonByGen={element} />
-          </div>
-        ))}
-      </div> */}
+      {error && <span>{error}</span>}
+      <Button onClick={() => toggleDrawer(true)}>View By Generation</Button>
+      <Drawer
+        anchor="left"
+        open={openDrawer}
+        onClose={() => toggleDrawer(false)}
+      >
+        {generation > 0 && (
+        <ListItem button onClick={() => setGeneration(0)}>
+          <ListItemText primary="Back to main menu" />
+          <ChevronLeftIcon />
+        </ListItem>
+        )}
+        {list()}
+      </Drawer>
+      {selectedPokemon}
     </div>
   );
 };
