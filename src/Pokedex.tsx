@@ -11,7 +11,6 @@ const Pokedex: FunctionComponent = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [pokemonEntry, setPokemonEntry] = useState<Record<any, any>>({})
-
   const params = useParams() as Record<any, any>
   const location = useLocation()
   const { state } = location

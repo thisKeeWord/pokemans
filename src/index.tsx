@@ -1,19 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Route } from 'react-router'
-import { HashRouter } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Pokedex from './Pokedex'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
-      <Route exact path="/" component={Pokedex} />
-      <Route path="/:name" component={Pokedex} />
-      {/* Add about page */}
-      {/* Add FourOhFour page */}
-    </HashRouter>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Pokedex} />
+        <Route path="/:name" component={Pokedex} />
+        {/* Add about page */}
+        {/* Add FourOhFour page */}
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('pokedex'),
 )

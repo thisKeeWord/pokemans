@@ -37,7 +37,7 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, getPokemonD
         <List>
           {arr?.map((el: Record<any, any>, index: number) => (
             <ListItem button key={index} onClick={() => clickListener(generation ? el.name : index)}>
-              <ListItemText primary={generation ? el.name : `Gen ${index + 1}`} />
+              <ListItemText primary={generation ? el.name : `Gen ${index + 1}`} className="drawer-item" />
               {!generation && <ChevronRightIcon />}
             </ListItem>
           ))}
