@@ -4,15 +4,15 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Pokedex from './Pokedex'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
+import FourOhFour from './components/FourOhFour'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
         <Route exact path="/" component={Pokedex} />
-        <Route path="/:name" component={Pokedex} />
-        {/* Add about page */}
-        {/* Add FourOhFour page */}
+        <Route path="/pokemon/:name" component={Pokedex} />
+        <Route path="*" component={FourOhFour} />
       </Switch>
     </Router>
   </React.StrictMode>,

@@ -1,3 +1,8 @@
+html {
+  min-height: 100% !important;
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
 }
 
 code {
@@ -36,6 +43,11 @@ code {
   font-size: 1.01em;
 }
 
+#pokedex {
+  height: 100%;
+  width: 100%;
+}
+
 #information {
   border-right: 1px solid black;
 }
@@ -43,25 +55,6 @@ code {
 .onTop {
   display: flex;
   justify-content: space-between;
-}
-
-.dexByGen {
-  text-align: center;
-  width: 20%;
-  display: inline-block;
-  margin: 1px;
-  padding: 0 29px;
-}
-
-.list {
-  text-align: center;
-}
-
-.pokesGen {
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  height: 500px;
 }
 
 a {
@@ -96,4 +89,34 @@ a:hover {
 
 .drawer-item {
   text-align: center;
+}
+
+/**
+ * FourOhFour
+ */
+.four-oh-four-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.four-oh-four-body p {
+  font-size: 24px;
+  margin-bottom: 2px;
+}
+
+.four-oh-four-body span {
+  font-size: 15px;
+}
+
+.pikachu-gif {
+  text-align: center;
+}
+
+.pikachu-gif > img {
+  height: 240px;
+  width: 240px;
+  content: url('./images/pikachu.gif')
 }

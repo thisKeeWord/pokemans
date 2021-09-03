@@ -28,7 +28,7 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, getPokemonD
       if (!generation) {
         return setGeneration(gen as number + 1)
       }
-      history.push(`/${gen}`, { updated: true })
+      history.push(`/pokemon/${gen}`, { updated: true })
       setOpenDrawer(false)
       await getPokemonData(gen as string)
     }
