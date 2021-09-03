@@ -1,3 +1,8 @@
+html {
+  min-height: 100% !important;
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +10,113 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.goBack {
+  height: 50px;
+  width: 50px;
+  background-image: url('./images/back-arrow.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  
+}
+
+.descriptor {
+  border: 1px solid black;
+  justify-content: space-around;
+  text-align: center;
+  display: flex;
+}
+
+.key {
+  width: 50%;
+  line-height: 1.7;
+  font-size: 1.01em;
+}
+
+#pokedex {
+  height: 100%;
+  width: 100%;
+}
+
+#information {
+  border-right: 1px solid black;
+}
+
+.onTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+  color: darkslategrey;
+  line-height: 1.4;
+}
+
+a:hover {
+  color: lightslategrey;
+}
+
+.spinner {
+  background-image: url("./images/pokeball-gif-24.gif");
+  background-color: white;
+  justify-content: center;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.pokemon-content {
+  margin: 0 auto;
+  width: 80%;
+  overflow-wrap:normal;
+}
+
+.MuiDrawer-paper > div > ul {
+  width: 225px;
+}
+
+.drawer-item {
+  text-align: center;
+}
+
+/**
+ * FourOhFour
+ */
+.four-oh-four-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.four-oh-four-body p {
+  font-size: 24px;
+  margin-bottom: 2px;
+}
+
+.four-oh-four-body span {
+  font-size: 15px;
+}
+
+.pikachu-gif {
+  text-align: center;
+}
+
+.pikachu-gif > img {
+  height: 240px;
+  width: 240px;
+  content: url('./images/pikachu.gif')
 }
