@@ -1,6 +1,4 @@
-import React, {
-  FunctionComponent, ReactElement, useState,
-} from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import Drawer from '@material-ui/core/Drawer'
 import Button from '@material-ui/core/Button'
@@ -12,39 +10,33 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
 interface GenerationsProps {
   genList: any[]
-  // eslint-disable-next-line no-unused-vars
-  getPokemonData: (name: string) => Promise<void>
+  state: Record<any, any>
 }
 
-const Generations: FunctionComponent<GenerationsProps> = ({ genList, getPokemonData }: GenerationsProps) => {
+const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: GenerationsProps) => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
-  const [generation, setGeneration] = useState<number | string>(0)
+  const [generation, setGeneration] = useState<string>('')
+  const [pokemonList, setPokemonList] = useState<any[]>([])
   const history = useHistory()
 
-  // switch between generation list and generation's pokemon list
-  const list = (): ReactElement => {
-    const arr = generation ? genList[generation as number - 1] : genList
-    const clickListener = async (gen: number | string) => {
-      if (!generation) {
-        return setGeneration(gen as number + 1)
-      }
-      history.push(`/pokemon/${gen}`, { updated: true })
-      setOpenDrawer(false)
-      await getPokemonData(gen as string)
-    }
-    return (
-      <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
-        <List>
-          {arr?.map((el: Record<any, any>, index: number) => (
-            <ListItem button key={index} onClick={() => clickListener(generation ? el.name : index)}>
-              <ListItemText primary={generation ? el.name : `Gen ${index + 1}`} className="drawer-item" />
-              {!generation && <ChevronRightIcon />}
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    )
+  const handlePokemonSelection = async (pokemon: Record<any, any>) => {
+    history.push(`/pokemon/${pokemon.name}`, { updated: true, generation })
+    setOpenDrawer(false)
+    setGeneration(generation)
   }
+
+  const selectRegion = (gen: Record<any, any>) => {
+    setGeneration(gen.region)
+    setPokemonList(gen.pokemonList)
+  }
+
+  useEffect(() => {
+    if (state?.generation && genList.length) {
+      const stateList = genList.find(({ region }) => region === state.generation)
+      setGeneration(state.generation)
+      setPokemonList(stateList.pokemonList)
+    }
+  }, [state])
 
   return (
     <>
@@ -54,13 +46,35 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, getPokemonD
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
       >
-        {generation > 0 && (
-          <ListItem button onClick={() => setGeneration(0)}>
-            <ListItemText primary="Back to main menu" />
-            <ChevronLeftIcon />
-          </ListItem>
+        {generation ? (
+          <>
+            <ListItem button onClick={() => setGeneration('')}>
+              <ChevronLeftIcon />
+              <ListItemText primary="Back to region list" />
+            </ListItem>
+            <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
+              <List>
+                {pokemonList?.map((pokemon: Record<any, any>, index: number) => (
+                  <ListItem button key={index} onClick={() => handlePokemonSelection(pokemon)}>
+                    <ListItemText key={index} primary={pokemon.name} className="drawer-item" />
+                    <ChevronRightIcon />
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+          </>
+        ) : (
+          <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
+            <List>
+              {genList?.map((gen: Record<any, any>, index: number) => (
+                <ListItem button key={index} onClick={() => selectRegion(gen)}>
+                  <ListItemText key={index} primary={gen.region} className="drawer-item" />
+                  <ChevronRightIcon />
+                </ListItem>
+              ))}
+            </List>
+          </div>
         )}
-        {list()}
       </Drawer>
     </>
   )
