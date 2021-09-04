@@ -13,7 +13,7 @@ const Pokedex: FunctionComponent = () => {
   const [pokemonEntry, setPokemonEntry] = useState<Record<any, any>>({})
   const params = useParams() as Record<any, any>
   const location = useLocation()
-  const { state } = location
+  const { state } = location as Record<any, any>
 
   const getPokemonData = async (name: string) => {
     setLoading(true)
@@ -39,11 +39,13 @@ const Pokedex: FunctionComponent = () => {
         const fetchResults = await Promise.all(gensData.data.results.map(async (data, index: number) => {
           try {
             const resultData = await axios.get(data.url)
-            const sortedData = resultData.data.pokemon_species.sort(
+            // eslint-disable-next-line camelcase
+            const { pokemon_species, main_region } = resultData.data
+            const sortedData = pokemon_species.sort(
               (a, b) => a.url.replace(/\D/g, '').slice(1) - b.url.replace(/\D/g, '').slice(1),
             )
 
-            return sortedData
+            return { region: main_region.name.charAt(0).toUpperCase() + main_region.name.slice(1), pokemonList: sortedData }
           } catch (err) {
             throw new Error(`An error occurred fetching the details of generation ${index + 1}`)
           }
@@ -61,10 +63,10 @@ const Pokedex: FunctionComponent = () => {
   }, [])
 
   useEffect(() => {
-    if (params.name && !state) {
+    if (params.name) {
       getPokemonData(params.name)
     }
-  }, [params.name])
+  }, [params])
 
   if (loading) {
     return <div className="spinner" />
@@ -73,7 +75,7 @@ const Pokedex: FunctionComponent = () => {
   return (
     <div className="pokeList">
       {error && <span>{error}</span>}
-      <Generations genList={genList} getPokemonData={getPokemonData} />
+      <Generations genList={genList} state={state} />
       <PokemonEntry pokemonEntry={pokemonEntry} />
     </div>
   )
