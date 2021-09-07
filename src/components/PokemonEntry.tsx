@@ -6,7 +6,12 @@ interface PokemonEntryProps {
 
 const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry }: PokemonEntryProps) => {
   if (!pokemonEntry.name) {
-    return <p>No Pokémon selected.</p>
+    return (
+      <div>
+        <p>No Pokémon selected.</p>
+        <span>Click on the menu to begin the search.</span>
+      </div>
+    )
   }
 
   return (
