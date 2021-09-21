@@ -166,6 +166,24 @@ a:hover {
   padding-right: 10px;
 }
 
-h3.title {
-  text-align: center;
+/* 
+ * Main page
+ */
+.pokeList {
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.generations {
+  width: 25%;
+  border-right: 1px solid black;
+  height: 100%;
+}
+
+.entry {
+  width: 75%;
 }
