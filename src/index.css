@@ -165,3 +165,7 @@ a:hover {
 .about-body .icons a {
   padding-right: 10px;
 }
+
+h3.title {
+  text-align: center;
+}

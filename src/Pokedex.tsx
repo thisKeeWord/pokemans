@@ -74,6 +74,7 @@ const Pokedex: FunctionComponent = () => {
 
   return (
     <div className="pokeList">
+      <h3 className="title">Pokemans</h3>
       {error && <span>{error}</span>}
       <Generations genList={genList} state={state} />
       <PokemonEntry pokemonEntry={pokemonEntry} />
