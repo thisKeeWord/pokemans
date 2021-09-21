@@ -8,7 +8,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <Router>
       <Switch>
         <Route exact path="/" component={Pokedex} />
@@ -17,7 +17,7 @@ ReactDOM.render(
         <Route path="*" component={FourOhFour} />
       </Switch>
     </Router>
-  </React.StrictMode>,
+  </>,
   document.getElementById('pokedex'),
 )
 
