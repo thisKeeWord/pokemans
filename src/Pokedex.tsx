@@ -83,19 +83,19 @@ const Pokedex: FunctionComponent = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
+            <Typography variant="h6" component="div">
+              Pokemans
+            </Typography>
+            <Link href="/about" className="about-link">About</Link>
             <IconButton
               size="large"
-              edge="start"
+              edge="end"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              className="pokemon-menu"
             >
               <Generations genList={genList} state={state} />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Pokemans
-            </Typography>
-            <Link href="/about">About</Link>
           </Toolbar>
         </AppBar>
       </Box>

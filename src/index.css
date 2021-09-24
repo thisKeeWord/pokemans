@@ -187,3 +187,27 @@ a:hover {
 .entry {
   width: 75%;
 }
+
+.MuiAppBar-root {
+  background-color: #fff !important;
+  color: black !important;
+  padding: 0 20px;
+}
+
+.MuiButton-contained {
+  text-transform: none !important;
+}
+
+.pokemon-menu {
+  margin-left: auto !important;
+}
+
+.about-link {
+  color: black !important;
+  margin-left: 25px !important;
+}
+
+.drawer-list {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
