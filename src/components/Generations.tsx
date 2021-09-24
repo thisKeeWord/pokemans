@@ -1,17 +1,27 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import Drawer from '@material-ui/core/Drawer'
-import Button from '@material-ui/core/Button'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+import { styled } from '@mui/material/styles'
+import Divider from '@material-ui/core/Divider/Divider'
+import IconButton from '@material-ui/core/IconButton/IconButton'
+import List from '@material-ui/core/List/List'
+import { Drawer, ListItem, ListItemText } from '@material-ui/core'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import Button from '@material-ui/core/Button/Button'
 
 interface GenerationsProps {
   genList: any[]
   state: Record<any, any>
 }
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
+}))
 
 const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: GenerationsProps) => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
@@ -40,24 +50,30 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: Ge
 
   return (
     <>
-      <Button onClick={() => setOpenDrawer(true)}>View By Generation</Button>
+      <Button onClick={() => setOpenDrawer(true)} variant="contained">View Pokemon</Button>
       <Drawer
-        anchor="left"
+        anchor="right"
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
       >
+        <DrawerHeader>
+          <IconButton onClick={() => setOpenDrawer(false)}>
+            <ChevronRightIcon />
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
         {generation ? (
           <>
             <ListItem button onClick={() => setGeneration('')}>
-              <ChevronLeftIcon />
               <ListItemText primary="Back to region list" />
+              <ChevronRightIcon />
             </ListItem>
             <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
-              <List>
+              <List className="drawer-list">
                 {pokemonList?.map((pokemon: Record<any, any>, index: number) => (
                   <ListItem button key={index} onClick={() => handlePokemonSelection(pokemon)}>
+                    <ChevronLeftIcon />
                     <ListItemText key={index} primary={pokemon.name} className="drawer-item" />
-                    <ChevronRightIcon />
                   </ListItem>
                 ))}
               </List>
@@ -65,11 +81,11 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: Ge
           </>
         ) : (
           <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
-            <List>
+            <List className="drawer-list">
               {genList?.map((gen: Record<any, any>, index: number) => (
                 <ListItem button key={index} onClick={() => selectRegion(gen)}>
+                  <ChevronLeftIcon />
                   <ListItemText key={index} primary={gen.region} className="drawer-item" />
-                  <ChevronRightIcon />
                 </ListItem>
               ))}
             </List>
