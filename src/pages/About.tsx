@@ -13,7 +13,7 @@ const About: FunctionComponent = () => (
       <div className="about-project" data-testid="about-body">
         Pokemans is a basic, general pokedex.
         You can view a Pokemon&apos;s base information by clicking on the menu in the homepage.
-        You can also replace &lsquo;/about&lsquo; with &lsquo;/pokemon/?q=yourpokemonname&lsquo; in the url.
+        You can also replace &lsquo;/about&lsquo; with &lsquo;/pokemon/yourpokemonname&lsquo; in the url.
       </div>
       <div className="icons" data-testid="social-icons">
         <a href="https://www.linkedin.com/in/thiskeeword" target="_blank" rel="noreferrer" data-testid="media-icon">
