@@ -1,13 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { styled } from '@mui/material/styles'
 import Divider from '@material-ui/core/Divider/Divider'
 import IconButton from '@material-ui/core/IconButton/IconButton'
 import List from '@material-ui/core/List/List'
+import Button from '@material-ui/core/Button/Button'
 import { Drawer, ListItem, ListItemText } from '@material-ui/core'
+import { styled } from '@mui/material/styles'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import Button from '@material-ui/core/Button/Button'
 
 interface GenerationsProps {
   genList: any[]
