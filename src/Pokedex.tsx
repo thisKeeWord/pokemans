@@ -101,10 +101,27 @@ const Pokedex: FunctionComponent = () => {
       </Box>
       {/* {error && <span>{error || 'yo'}</span>} */}
       {!Object.keys(pokemonEntry).length ? (
-        <div>
-          Pokemans is a basic, general pokedex.
-          To get started, click the &lsquo;View Pokemon&lsquo; button in the nav bar and select a region.
-          You can also add &lsquo;/pokemon/yourpokemonname&lsquo; in the url.
+        <div className="home-info">
+          <p className="main-desc">
+            <strong>Pokemans</strong>
+            {' '}
+            is a basic, general pokedex.
+          </p>
+          <span className="sub-desc">
+            To get started, click the
+            {' '}
+            <i>View Pokemon</i>
+            {' '}
+            button in the nav bar and select a region.
+          </span>
+          <span className="sub-desc">
+            You can also add
+            {' '}
+            <i>/pokemon/yourpokemonname</i>
+            {' '}
+            in the url.
+
+          </span>
         </div>
       ) : (
         <div />

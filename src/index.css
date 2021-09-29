@@ -211,3 +211,19 @@ a:hover {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
+
+/**
+ * Home page
+ */
+.home-info {
+  padding: 4rem;
+}
+
+p.main-desc {
+  font-size: 1.25rem;
+}
+
+span.sub-desc {
+  display: block;
+  padding: 4px 0;
+}
