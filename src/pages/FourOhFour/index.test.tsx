@@ -27,7 +27,7 @@ describe('FourOhFour', () => {
     expect(getByTestId('four-oh-four-body')).toBeInTheDocument()
   })
 
-  it('displays the pikachu img', () => {
+  it('displays the pikachu gif', () => {
     expect(getByTestId('pikachu')).toBeInTheDocument()
   })
 })
