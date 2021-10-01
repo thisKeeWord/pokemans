@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
-import About from './About'
+import About from '.'
 
 describe('About', () => {
   let renderer: ReturnType<typeof render>
