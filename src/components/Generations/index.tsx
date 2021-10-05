@@ -8,9 +8,10 @@ import { Drawer, ListItem, ListItemText } from '@material-ui/core'
 import { styled } from '@mui/material/styles'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import { GenList, PokemonList } from '../../interfaces'
 
 interface GenerationsProps {
-  genList: any[]
+  genList: GenList[]
   state: Record<any, any>
 }
 
@@ -26,7 +27,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: GenerationsProps) => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [generation, setGeneration] = useState<string>('')
-  const [pokemonList, setPokemonList] = useState<any[]>([])
+  const [pokemonList, setPokemonList] = useState<PokemonList[]>([])
   const history = useHistory()
 
   const handlePokemonSelection = async (pokemon: Record<any, any>) => {
@@ -44,13 +45,13 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: Ge
     if (state?.generation && genList.length) {
       const stateList = genList.find(({ region }) => region === state.generation)
       setGeneration(state.generation)
-      setPokemonList(stateList.pokemonList)
+      setPokemonList(stateList?.pokemonList || [])
     }
   }, [state])
 
   return (
     <>
-      <Button onClick={() => setOpenDrawer(true)} variant="contained">View Pokemon</Button>
+      <Button onClick={() => setOpenDrawer(true)} variant="contained" data-testid="view-pokemon">View Pokemon</Button>
       <Drawer
         anchor="right"
         open={openDrawer}

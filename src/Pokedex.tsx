@@ -55,7 +55,9 @@ const Pokedex: FunctionComponent = () => {
           } catch (err) {
             throw new Error(`An error occurred fetching the details of generation ${index + 1}`)
           }
-        }))
+        }).map((p) => p.catch((e) => {
+          throw e
+        })))
 
         setGenList(fetchResults)
       } catch (e) {
