@@ -96,7 +96,7 @@ const Pokedex: FunctionComponent = () => {
               aria-label="menu"
               className="pokemon-menu"
             >
-              <Generations genList={genList} state={state} />
+              <Generations genList={genList} state={state} paramPokemon={params.name} />
             </IconButton>
           </Toolbar>
         </AppBar>

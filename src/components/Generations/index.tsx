@@ -12,7 +12,8 @@ import { GenList, PokemonList } from '../../interfaces'
 
 interface GenerationsProps {
   genList: GenList[]
-  state: Record<any, any>
+  state?: Record<any, any>
+  paramPokemon?: string
 }
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -24,10 +25,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }))
 
-const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: GenerationsProps) => {
+const Generations: FunctionComponent<GenerationsProps> = ({ genList, state, paramPokemon }: GenerationsProps) => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [generation, setGeneration] = useState<string>('')
-  const [pokemonList, setPokemonList] = useState<PokemonList[]>([])
+  const [pokemonByGeneration, setPokemonByGeneration] = useState<PokemonList[]>([])
   const history = useHistory()
 
   const handlePokemonSelection = async (pokemon: Record<any, any>) => {
@@ -38,16 +39,24 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: Ge
 
   const selectRegion = (gen: Record<any, any>) => {
     setGeneration(gen.region)
-    setPokemonList(gen.pokemonList)
+    setPokemonByGeneration(gen.pokemonList)
   }
 
   useEffect(() => {
+    if (!state?.generation && paramPokemon && genList.length) {
+      const straightToPokemonList = genList.find(({ pokemonList }) => pokemonList.some(({ name }) => name.includes(paramPokemon)))
+      if (straightToPokemonList) {
+        setGeneration(straightToPokemonList.region)
+        setPokemonByGeneration(straightToPokemonList.pokemonList)
+      }
+    }
+
     if (state?.generation && genList.length) {
       const stateList = genList.find(({ region }) => region === state.generation)
       setGeneration(state.generation)
-      setPokemonList(stateList?.pokemonList || [])
+      setPokemonByGeneration(stateList?.pokemonList || [])
     }
-  }, [state])
+  }, [state?.generation, paramPokemon, genList])
 
   return (
     <>
@@ -71,8 +80,8 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: Ge
             </ListItem>
             <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
               <List className="drawer-list">
-                {pokemonList?.map((pokemon: Record<any, any>, index: number) => (
-                  <ListItem button key={index} onClick={() => handlePokemonSelection(pokemon)}>
+                {pokemonByGeneration?.map((pokemon: Record<any, any>, index: number) => (
+                  <ListItem button key={index} onClick={() => handlePokemonSelection(pokemon)} data-testid="gen-pokemon-item">
                     <ChevronLeftIcon />
                     <ListItemText key={index} primary={pokemon.name} className="drawer-item" />
                   </ListItem>
@@ -84,7 +93,7 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state }: Ge
           <div role="presentation" onKeyDown={() => setOpenDrawer(false)}>
             <List className="drawer-list">
               {genList?.map((gen: Record<any, any>, index: number) => (
-                <ListItem button key={index} onClick={() => selectRegion(gen)}>
+                <ListItem button key={index} onClick={() => selectRegion(gen)} data-testid="gen-region-item">
                   <ChevronLeftIcon />
                   <ListItemText key={index} primary={gen.region} className="drawer-item" />
                 </ListItem>
