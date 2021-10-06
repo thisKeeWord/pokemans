@@ -122,7 +122,6 @@ const Pokedex: FunctionComponent = () => {
             <i>/pokemon/yourpokemonname</i>
             {' '}
             in the url.
-
           </span>
         </div>
       ) : (
