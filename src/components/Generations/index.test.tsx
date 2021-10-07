@@ -20,12 +20,14 @@ describe('Generations', () => {
   let getByTestId: Function
   let getAllByTestId: Function
   let queryByTestId: Function
+  let rerender: Function
 
   beforeEach(() => {
     renderer = render(<Generations genList={genList} />)
     getByTestId = renderer.getByTestId
     getAllByTestId = renderer.getAllByTestId
     queryByTestId = renderer.queryByTestId
+    rerender = renderer.rerender
   })
 
   afterEach(() => {
@@ -55,5 +57,14 @@ describe('Generations', () => {
     fireEvent.click(regionBtn)
 
     expect(getAllByTestId('gen-pokemon-item')).toHaveLength(genList[0].pokemonList.length)
+  })
+
+  it('displays the pokemon passed in from url once sidenav is clicked', () => {
+    rerender(<Generations genList={genList} selectedPokemon={genList[0].pokemonList[0].name} />)
+
+    const btn = getByTestId('view-pokemon')
+    fireEvent.click(btn)
+
+    expect(getAllByTestId('gen-pokemon-item')[0]).toHaveTextContent(genList[0].pokemonList[0].name)
   })
 })
