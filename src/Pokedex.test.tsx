@@ -45,6 +45,7 @@ const mockResponse = {
 }
 
 jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
   useParams: () => ({
     name: '',
   }),

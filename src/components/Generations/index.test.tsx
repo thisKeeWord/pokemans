@@ -15,6 +15,15 @@ const genList = [
   },
 ]
 
+const mockHistoryPush = jest.fn()
+
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}))
+
 describe('Generations', () => {
   let renderer: ReturnType<typeof render>
   let getByTestId: Function
@@ -57,6 +66,20 @@ describe('Generations', () => {
     fireEvent.click(regionBtn)
 
     expect(getAllByTestId('gen-pokemon-item')).toHaveLength(genList[0].pokemonList.length)
+  })
+
+  it('pushes the selected pokemon to the url', () => {
+    const btn = getByTestId('view-pokemon')
+    fireEvent.click(btn)
+
+    const regionBtn = getAllByTestId('gen-region-item')[0]
+    fireEvent.click(regionBtn)
+
+    const pokemonBtn = getAllByTestId('gen-pokemon-item')[0]
+    fireEvent.click(pokemonBtn)
+
+    expect(mockHistoryPush)
+      .toHaveBeenCalledWith(`/pokemon/${genList[0].pokemonList[0].name}`, { updated: true, generation: genList[0].region })
   })
 
   it('displays the pokemon passed in from url once sidenav is clicked', () => {
