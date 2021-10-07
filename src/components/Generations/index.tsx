@@ -13,7 +13,7 @@ import { GenList, PokemonList } from '../../interfaces'
 interface GenerationsProps {
   genList: GenList[]
   state?: Record<any, any>
-  paramPokemon?: string
+  selectedPokemon?: string
 }
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -25,7 +25,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }))
 
-const Generations: FunctionComponent<GenerationsProps> = ({ genList, state, paramPokemon }: GenerationsProps) => {
+const Generations: FunctionComponent<GenerationsProps> = ({ genList, state, selectedPokemon }: GenerationsProps) => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [generation, setGeneration] = useState<string>('')
   const [pokemonByGeneration, setPokemonByGeneration] = useState<PokemonList[]>([])
@@ -43,20 +43,22 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state, para
   }
 
   useEffect(() => {
-    if (!state?.generation && paramPokemon && genList.length) {
-      const straightToPokemonList = genList.find(({ pokemonList }) => pokemonList.some(({ name }) => name.includes(paramPokemon)))
+    // if user entered pokemon directly in url
+    if (!state?.generation && selectedPokemon && genList.length) {
+      const straightToPokemonList = genList.find(({ pokemonList }) => pokemonList.some(({ name }) => name.includes(selectedPokemon)))
       if (straightToPokemonList) {
         setGeneration(straightToPokemonList.region)
         setPokemonByGeneration(straightToPokemonList.pokemonList)
       }
     }
 
+    // if user entered pokemon by selecting on sidenav
     if (state?.generation && genList.length) {
       const stateList = genList.find(({ region }) => region === state.generation)
       setGeneration(state.generation)
       setPokemonByGeneration(stateList?.pokemonList || [])
     }
-  }, [state?.generation, paramPokemon, genList])
+  }, [state?.generation, selectedPokemon, genList])
 
   return (
     <>

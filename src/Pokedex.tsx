@@ -16,21 +16,19 @@ const Pokedex: FunctionComponent = () => {
   const [genList, setGenList] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
+  const [selectedPokemon, setSelectedPokemon] = useState<string>('')
   const [pokemonEntry, setPokemonEntry] = useState<Record<any, any>>({})
+
   const params = useParams() as Record<any, any>
   const location = useLocation()
   const { state } = location as Record<any, any>
 
   const getPokemonData = async (name: string) => {
-    setLoading(true)
-
     try {
       const results = await axios.get(`${rootUrl}/pokemon/${name}`)
-      setPokemonEntry(results.data)
+      return results.data
     } catch (err) {
-      setError(`Could not retrieve information about ${name}. ${err.message}`)
-    } finally {
-      setLoading(false)
+      throw new Error(`Could not retrieve information about ${name}. ${err.message}`)
     }
   }
 
@@ -71,10 +69,23 @@ const Pokedex: FunctionComponent = () => {
   }, [])
 
   useEffect(() => {
-    if (params.name) {
-      getPokemonData(params.name)
+    const fetchPokemonData = async () => {
+      setLoading(true)
+
+      try {
+        const pokemonData = await getPokemonData(params.name)
+        setPokemonEntry(pokemonData)
+      } catch (er) {
+        setError(er.message)
+      } finally {
+        setLoading(false)
+      }
     }
-  }, [params])
+    if (params.name) {
+      setSelectedPokemon(params.name)
+      fetchPokemonData()
+    }
+  }, [params.name])
 
   if (loading) {
     return <div className="spinner" />
@@ -96,7 +107,7 @@ const Pokedex: FunctionComponent = () => {
               aria-label="menu"
               className="pokemon-menu"
             >
-              <Generations genList={genList} state={state} paramPokemon={params.name} />
+              <Generations genList={genList} state={state} selectedPokemon={selectedPokemon} />
             </IconButton>
           </Toolbar>
         </AppBar>
