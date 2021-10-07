@@ -8,6 +8,7 @@ import { Drawer, ListItem, ListItemText } from '@material-ui/core'
 import { styled } from '@mui/material/styles'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import CloseIcon from '@mui/icons-material/Close'
 import { GenList, PokemonList } from '../../interfaces'
 
 interface GenerationsProps {
@@ -70,7 +71,7 @@ const Generations: FunctionComponent<GenerationsProps> = ({ genList, state, sele
       >
         <DrawerHeader>
           <IconButton onClick={() => setOpenDrawer(false)}>
-            <ChevronRightIcon />
+            <CloseIcon />
           </IconButton>
         </DrawerHeader>
         <Divider />

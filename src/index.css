@@ -215,6 +215,10 @@ a:hover {
 /**
  * Home page
  */
+.view {
+  margin-left: auto;
+}
+
 .home-info {
   padding: 4rem;
 }
