@@ -5,10 +5,9 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
 import Link from '@mui/material/Link'
 import Generations from './components/Generations'
-import PokemonEntry from './components/PokemonEntry'
+// import PokemonEntry from './components/PokemonEntry'
 
 const rootUrl = 'https://pokeapi.co/api/v2'
 
@@ -88,27 +87,21 @@ const Pokedex: FunctionComponent = () => {
   }, [params.name])
 
   if (loading) {
-    return <div className="spinner" />
+    return <div className="spinner" data-testid="spinner" />
   }
 
   return (
     <div className="pokeList">
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" data-testid="app-bar">
           <Toolbar>
             <Typography variant="h6" component="div">
               Pokemans
             </Typography>
-            <Link href="/about" className="about-link">About</Link>
-            <IconButton
-              size="large"
-              edge="end"
-              color="inherit"
-              aria-label="menu"
-              className="pokemon-menu"
-            >
+            <Link href="/about" className="about-link" data-testid="about">About</Link>
+            <div className="view">
               <Generations genList={genList} state={state} selectedPokemon={selectedPokemon} />
-            </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
       </Box>
