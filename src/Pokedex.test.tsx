@@ -47,7 +47,7 @@ const mockResponse = {
 jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
   useParams: () => ({
-    name: '',
+    name: 'squirtle',
   }),
   useLocation: () => ({
     state: '',
@@ -75,5 +75,22 @@ describe('Pokedex', () => {
     render(<Pokedex />)
 
     await waitFor(() => expect(spy).toHaveBeenCalledWith('https://pokeapi.co/api/v2/generation/?limit=1500'))
+  })
+
+  it('displays the error if api call errors when fetching generations', async () => {
+    const spy = jest.spyOn(axios, 'get')
+    spy.mockImplementationOnce(() => Promise.reject(new Error('failed')))
+    const { getByTestId } = render(<Pokedex />)
+
+    await waitFor(() => expect(getByTestId('error')).toBeInTheDocument())
+  })
+
+  it('makes the call to get pokemon`s data if pokemon name is in url', async () => {
+    const spy = jest.spyOn(axios, 'get')
+    spy.mockImplementationOnce(() => Promise.resolve({ data: mockResponse }))
+
+    render(<Pokedex />)
+
+    await waitFor(() => expect(spy).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/squirtle'))
   })
 })

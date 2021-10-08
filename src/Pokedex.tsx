@@ -105,7 +105,7 @@ const Pokedex: FunctionComponent = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      {/* {error && <span>{error || 'yo'}</span>} */}
+      {error && <span data-testid="error">{error || 'yo'}</span>}
       {!Object.keys(pokemonEntry).length ? (
         <div className="home-info">
           <p className="main-desc">
