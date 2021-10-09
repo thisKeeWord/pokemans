@@ -27,14 +27,26 @@ code {
   background-size: contain;
   -webkit-margin-before: 0.83em;
   -webkit-margin-after: 0.83em;
-  
 }
 
 .descriptor {
-  border: 1px solid black;
+  border-top: 1px solid black;
   justify-content: space-around;
   text-align: center;
   display: flex;
+}
+
+.descriptor.first-row {
+  border-top: none !important;
+}
+
+.MuiTable-root {
+  border: 1px solid black;
+  text-transform: capitalize;
+}
+
+.MuiTableCell-root {
+  border-bottom: none !important;
 }
 
 .key {
@@ -55,6 +67,7 @@ code {
 .onTop {
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 
 a {
@@ -80,7 +93,8 @@ a:hover {
 .pokemon-content {
   margin: 0 auto;
   width: 80%;
-  overflow-wrap:normal;
+  overflow-wrap: normal;
+  padding: 20px;
 }
 
 .MuiDrawer-paper > div > ul {

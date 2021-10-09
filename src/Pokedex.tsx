@@ -7,7 +7,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import Generations from './components/Generations'
-// import PokemonEntry from './components/PokemonEntry'
+import PokemonEntry from './components/PokemonEntry'
 
 const rootUrl = 'https://pokeapi.co/api/v2'
 
@@ -129,7 +129,7 @@ const Pokedex: FunctionComponent = () => {
           </span>
         </div>
       ) : (
-        <div />
+        <PokemonEntry pokemonEntry={pokemonEntry} />
       )}
     </div>
   )
