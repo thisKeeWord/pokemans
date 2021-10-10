@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import cx from 'classnames'
-import { Table, TableCell } from '@mui/material'
+import Table from '@mui/material/Table'
+import TableCell from '@mui/material/TableCell'
 
 const categories = ['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'order', 'base_experience', 'types']
 interface PokemonEntryProps {
@@ -40,7 +41,7 @@ const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry }: Po
                 return (
                   <div className={cx('descriptor', { 'first-row': index === 0 })} key={index}>
                     <TableCell className="key" id="information" key={key + index}>{key.replace(/-/g, ' ')}</TableCell>
-                    <TableCell className="key">
+                    <TableCell className="key" key={key + index}>
                       {pokemonEntry[key].map((elem, idx) => {
                         if (elem.move) {
                           if (idx === pokemonEntry[key].length - 1) {
