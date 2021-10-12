@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 
-const categories = ['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'order', 'base_experience', 'types']
+const categories = ['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'base_experience', 'types']
 interface PokemonEntryProps {
   pokemonEntry: Record<any, any>
   pokemonEvolutionEntry: Record<any, any>
