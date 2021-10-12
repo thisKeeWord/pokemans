@@ -17,6 +17,7 @@ const Pokedex: FunctionComponent = () => {
   const [error, setError] = useState<string>('')
   const [selectedPokemon, setSelectedPokemon] = useState<string>('')
   const [pokemonEntry, setPokemonEntry] = useState<Record<any, any>>({})
+  const [pokemonEvolutionEntry, setPokemonEvolutionEntry] = useState<Record<any, any>>({})
 
   const params = useParams() as Record<any, any>
   const location = useLocation()
@@ -24,10 +25,20 @@ const Pokedex: FunctionComponent = () => {
 
   const getPokemonData = async (name: string) => {
     try {
-      const results = await axios.get(`${rootUrl}/pokemon/${name}`)
-      return results.data
+      const pokemonDataResults = await axios.get(`${rootUrl}/pokemon/${name}`)
+      return pokemonDataResults.data
     } catch (err) {
       throw new Error(`Could not retrieve information about ${name}. ${err.message}`)
+    }
+  }
+
+  const getEvolutionData = async (name: string) => {
+    try {
+      const evolutionDataResults = await axios.get(`${rootUrl}/pokemon-species/${name}`)
+      const evolutionChainResults = await axios.get(evolutionDataResults.data.evolution_chain.url)
+      return evolutionChainResults.data
+    } catch (err) {
+      throw new Error(`Could not retrieve evolution chain data about ${name}. ${err.message}`)
     }
   }
 
@@ -74,6 +85,9 @@ const Pokedex: FunctionComponent = () => {
       try {
         const pokemonData = await getPokemonData(params.name)
         setPokemonEntry(pokemonData)
+
+        const pokemonEvolutionData = await getEvolutionData(params.name)
+        setPokemonEvolutionEntry(pokemonEvolutionData)
       } catch (er) {
         setError(er.message)
       } finally {
@@ -129,7 +143,7 @@ const Pokedex: FunctionComponent = () => {
           </span>
         </div>
       ) : (
-        <PokemonEntry pokemonEntry={pokemonEntry} />
+        <PokemonEntry pokemonEntry={pokemonEntry} pokemonEvolutionEntry={pokemonEvolutionEntry} />
       )}
     </div>
   )
