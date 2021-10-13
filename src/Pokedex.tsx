@@ -125,7 +125,8 @@ const Pokedex: FunctionComponent = () => {
           <p className="main-desc">
             <strong>Pokemans</strong>
             {' '}
-            is a basic, general pokedex.
+            is a very basic, general pokedex.
+            It does not contain information for pokemon outside of their base (or initial) region.
           </p>
           <span className="sub-desc">
             To get started, click the
