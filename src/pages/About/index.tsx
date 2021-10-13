@@ -11,7 +11,7 @@ const About: FunctionComponent = () => (
         </ul>
       </div>
       <div className="about-project" data-testid="about-project">
-        Pokemans is a basic, general pokedex.
+        Pokemans is a basic, general pokedex. It does not contain information for pokemon outside of their base (or initial) region.
         You can view a Pokemon&apos;s base information by clicking on the menu in the homepage.
         You can also replace &lsquo;/about&lsquo; with &lsquo;/pokemon/yourpokemonname&lsquo; in the url.
       </div>
