@@ -1,0 +1,11 @@
+[
+  {
+    "region": "Kanto",
+    "pokemonList": [
+      {
+        "name": "bulbasaur",
+        "url": "https: //pokeapi.co/api/v2/pokemon-species/1/"
+      }
+    ]
+  }
+]
