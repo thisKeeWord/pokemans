@@ -3,17 +3,7 @@ import '@testing-library/jest-dom'
 import { fireEvent, render } from '@testing-library/react'
 import Generations from '.'
 
-const genList = [
-  {
-    region: 'Kanto',
-    pokemonList: [
-      {
-        name: 'bulbasaur',
-        url: 'https://pokeapi.co/api/v2/pokemon-species/1/',
-      },
-    ],
-  },
-]
+import genList from '../../../example_json/generations.json'
 
 const mockHistoryPush = jest.fn()
 

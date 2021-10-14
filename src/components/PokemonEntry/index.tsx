@@ -21,7 +21,7 @@ const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry, poke
   }
 
   return (
-    <div>
+    <div data-testid="pokemon-information">
       <div className="onTop pokemon-content">
         <h2 className="pokemon-name-image">
           <img src={pokemonEntry.sprites?.front_default} alt={pokemonEntry.sprites?.front_default} />
