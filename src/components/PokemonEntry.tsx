@@ -22,18 +22,12 @@ const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry, poke
 
   return (
     <div>
-      <div className="onTop">
-        <h2>
-          Name:
-          {' '}
+      <div className="onTop pokemon-content">
+        <h2 className="pokemon-name-image">
+          <img src={pokemonEntry.sprites?.front_default} alt={pokemonEntry.sprites?.front_default} />
           {pokemonEntry.name}
         </h2>
       </div>
-      <h3>
-        Sprite:
-        {' '}
-        <img src={pokemonEntry.sprites?.front_default} alt={pokemonEntry.sprites?.front_default} />
-      </h3>
       <div className="pokemon-content">
         <Table className="table">
           <TableBody>
