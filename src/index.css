@@ -245,3 +245,24 @@ span.sub-desc {
   display: block;
   padding: 4px 0;
 }
+
+/**
+ * Pokemon About Page
+ */
+.onTop.pokemon-content {
+  padding-bottom: 0 !important;
+}
+
+h2.pokemon-name-image {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  h2.pokemon-name-image img {
+    height: 120px;
+    width: 120px;
+  }
+}
