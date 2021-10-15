@@ -26,7 +26,10 @@ describe('About', () => {
   })
 
   it('displays the about project section', () => {
-    expect(getByTestId('about-project')).toHaveTextContent('Pokemans is a basic, general pokedex.')
+    expect(getByTestId('about-project')).toHaveTextContent(
+      // eslint-disable-next-line max-len
+      "Pokemans is a very basic, general pokedex. It does not contain information for pokemon outside of their base (or initial) region.You can view a Pokemon's base information by clicking on the menu in the homepage. You can also replace /about with /pokemon/yourpokemonname in the url.",
+    )
   })
 
   it('displays the social icons', () => {
