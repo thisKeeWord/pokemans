@@ -18,10 +18,7 @@ const About: FunctionComponent = () => (
           It does not contain information for pokemon outside of their base (or initial) region.
         </p>
         <span className="sub-desc">
-          You can view a Pokemon&apos;s base information by clicking on the menu in the
-          {' '}
-          <a href="/" data-testid="home-link">homepage</a>
-          .
+          You can view a Pokemon&apos;s base information by clicking on the menu in the homepage.
           You can also replace
           {' '}
           <i>/about</i>
