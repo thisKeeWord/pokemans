@@ -13,6 +13,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import { styled } from '@mui/material/styles'
 import { GenList, PokemonList } from '../../interfaces'
 
+import './index.scss'
+
 interface GenerationsProps {
   genList: GenList[]
   state?: Record<any, any>

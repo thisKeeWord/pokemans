@@ -1,0 +1,51 @@
+.about {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .about-body {
+    padding: 0 10rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .linkToPages {
+      width: 100%;
+      padding: 0px 0px 10px 0px;
+      margin-bottom: 0;
+      font-size: 13px;
+      list-style: none;
+
+      a {
+        padding-right: 10px;
+      }
+    }
+
+    .about-project {
+      padding-bottom: 25px;
+
+      .sub-desc a {
+        color: black;
+        text-decoration: underline;
+      }
+    }
+
+    .icons {
+      width: 100%;
+
+      a {
+        padding-right: 10px;
+
+        .icon-link {
+          height: 25px;
+          width: 25px;
+          color: black;
+        }
+      }
+    }
+  }
+}

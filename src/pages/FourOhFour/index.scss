@@ -1,0 +1,26 @@
+.four-oh-four-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 24px;
+    margin-bottom: 2px;
+  }
+
+  span {
+    font-size: 15px;
+  }
+
+  .pikachu-gif {
+    text-align: center;
+
+    & > img {
+      height: 240px;
+      width: 240px;
+      content: url('./../../images/pikachu.gif')
+    }
+  }
+}

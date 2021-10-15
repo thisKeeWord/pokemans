@@ -1,0 +1,56 @@
+#pokedex {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: darkslategrey;
+  line-height: 1.4;
+
+  &:hover {
+    color: lightslategrey;
+  }
+
+  &.about-link {
+    color: darkslategray !important;
+    margin-left: 10px !important;
+  }
+}
+
+.spinner {
+  background-image: url("./images/pokeball-gif-24.gif");
+  background-color: white;
+  justify-content: center;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.pokeList {
+  height: 100%;
+}
+
+.MuiAppBar-root {
+  background-color: #fff !important;
+  color: black !important;
+  padding: 0 20px;
+}
+
+.view {
+  margin-left: auto;
+}
+
+.home-info {
+  padding: 4rem;
+}
+
+p.main-desc {
+  font-size: 1.25rem;
+}
+
+span.sub-desc {
+  display: block;
+  padding: 4px 0;
+}

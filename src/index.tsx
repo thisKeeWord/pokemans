@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Pokedex from './Pokedex'
 import FourOhFour from './pages/FourOhFour'
 import About from './pages/About'
-import './index.css'
+import './index.scss'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(

@@ -9,6 +9,8 @@ import Link from '@mui/material/Link'
 import Generations from './components/Generations'
 import PokemonEntry from './components/PokemonEntry'
 
+import './Pokedex.scss'
+
 const rootUrl = 'https://pokeapi.co/api/v2'
 
 const Pokedex: FunctionComponent = () => {
