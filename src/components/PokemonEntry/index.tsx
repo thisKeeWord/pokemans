@@ -4,6 +4,8 @@ import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 
+import './index.scss'
+
 const categories = ['forms', 'abilities', 'stats', 'weight', 'moves', 'height', 'id', 'base_experience', 'types']
 interface PokemonEntryProps {
   pokemonEntry: Record<any, any>
@@ -32,7 +34,7 @@ const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry, poke
         <Table className="table" key={pokemonEntry.name}>
           <TableBody key={pokemonEntry.name}>
             <TableRow className="descriptor first-row" key={pokemonEntry.name}>
-              <TableCell className="key" id="information">Part Of Evolutionary Chain</TableCell>
+              <TableCell className="key information">Part Of Evolutionary Chain</TableCell>
               <TableCell className="key">{pokemonEvolutionEntry.chain?.evolves_to.length > 0 ? 'Yes' : 'No' }</TableCell>
             </TableRow>
             {Object.keys(pokemonEntry).map((key, index) => {
@@ -41,7 +43,7 @@ const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry, poke
                 if (Array.isArray(pokemonEntry[key])) {
                   return (
                     <TableRow className="descriptor" key={key + index}>
-                      <TableCell className="key" id="information" key={key + index}>
+                      <TableCell className="key information" key={key + index}>
                         {key.replace(/-/g, ' ')}
                       </TableCell>
                       <TableCell className="key">
@@ -134,7 +136,7 @@ const PokemonEntry: FunctionComponent<PokemonEntryProps> = ({ pokemonEntry, poke
 
                 return (
                   <TableRow className="descriptor" key={`${key}unique`}>
-                    <TableCell className="key" id="information">{key.replace(/_/g, ' ')}</TableCell>
+                    <TableCell className="key information">{key.replace(/_/g, ' ')}</TableCell>
                     <TableCell className="key">{pokemonEntry[key].toString()}</TableCell>
                   </TableRow>
                 )

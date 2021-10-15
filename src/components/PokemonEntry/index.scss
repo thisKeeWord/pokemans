@@ -1,0 +1,54 @@
+.MuiTable-root {
+  border: 1px solid black;
+  text-transform: capitalize;
+}
+
+.MuiTableCell-root {
+  border-bottom: none !important;
+}
+
+.pokemon-content {
+  margin: 0 auto;
+  width: 80%;
+  overflow-wrap: normal;
+  padding: 20px;
+
+  &.onTop {
+    padding-bottom: 0 !important;
+  
+    h2.pokemon-name-image {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+    }
+  }
+
+  .descriptor {
+    border-top: 1px solid black;
+    justify-content: space-around;
+    text-align: center;
+    display: flex;
+  
+    &.first-row {
+      border-top: none !important;
+    }
+  
+    .key {
+      width: 50%;
+      line-height: 1.7;
+      font-size: 1.01em;
+
+      &.information {
+        border-right: 1px solid black;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h2.pokemon-name-image img {
+    height: 120px;
+    width: 120px;
+  }
+}

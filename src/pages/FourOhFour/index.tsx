@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
+import './index.scss'
+
 const FourOhFour: FunctionComponent = () => (
   <div className="four-oh-four-body">
     <div className="pikachu-gif">
