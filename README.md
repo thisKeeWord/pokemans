@@ -1,15 +1,18 @@
-# About
+Pokemans
+==============
+
+## About
 
 This is a generic, very basic pokedex application that can be viewed [here](https://pokemans.herokuapp.com)
 
-# Running Locally
+## Running Locally
 1. clone the repository
 2. `npm install`
 3. `npm start`
 4. open your browser
 5. navigate to localhost:3002
 
-# Technologies
+## Technologies
 1. Typescript
 2. React
 3. React Router
