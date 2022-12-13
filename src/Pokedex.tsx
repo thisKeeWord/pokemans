@@ -112,7 +112,7 @@ const Pokedex: FunctionComponent = () => {
         <AppBar position="static" data-testid="app-bar">
           <Toolbar>
             <Typography variant="h6" component="div">
-              Pokemans
+              Simple Pokedexer
             </Typography>
             <Link href="/about" className="about-link" data-testid="about">About</Link>
             <div className="view">
@@ -125,7 +125,7 @@ const Pokedex: FunctionComponent = () => {
       {!Object.keys(pokemonEntry).length ? (
         <div className="home-info">
           <p className="main-desc">
-            <strong>Pokemans</strong>
+            <strong>Simple Pokedexer</strong>
             {' '}
             is a very basic, general pokedex.
             It does not contain information for pokemon outside of their base (or initial) region.

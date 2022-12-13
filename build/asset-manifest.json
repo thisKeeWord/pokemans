@@ -1,24 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.d78513d5.chunk.css",
-    "main.js": "/static/js/main.9e688b3d.chunk.js",
-    "main.js.map": "/static/js/main.9e688b3d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.96d20537.js",
-    "runtime-main.js.map": "/static/js/runtime-main.96d20537.js.map",
-    "static/js/2.50ddc616.chunk.js": "/static/js/2.50ddc616.chunk.js",
-    "static/js/2.50ddc616.chunk.js.map": "/static/js/2.50ddc616.chunk.js.map",
-    "static/js/3.3a75e0dd.chunk.js": "/static/js/3.3a75e0dd.chunk.js",
-    "static/js/3.3a75e0dd.chunk.js.map": "/static/js/3.3a75e0dd.chunk.js.map",
+    "main.css": "/static/css/main.b4b2b754.css",
+    "main.js": "/static/js/main.a6fb3060.js",
+    "static/js/787.007f6670.chunk.js": "/static/js/787.007f6670.chunk.js",
+    "static/media/pokeball-gif-24.gif": "/static/media/pokeball-gif-24.ea1d70797c42435b99f7.gif",
+    "static/media/pikachu.gif": "/static/media/pikachu.7f622cb06fb49f4de985.gif",
     "index.html": "/index.html",
-    "static/css/main.d78513d5.chunk.css.map": "/static/css/main.d78513d5.chunk.css.map",
-    "static/js/2.50ddc616.chunk.js.LICENSE.txt": "/static/js/2.50ddc616.chunk.js.LICENSE.txt",
-    "static/media/index.scss": "/static/media/pikachu.7f622cb0.gif",
-    "static/media/Pokedex.scss": "/static/media/pokeball-gif-24.ea1d7079.gif"
+    "main.b4b2b754.css.map": "/static/css/main.b4b2b754.css.map",
+    "main.a6fb3060.js.map": "/static/js/main.a6fb3060.js.map",
+    "787.007f6670.chunk.js.map": "/static/js/787.007f6670.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.96d20537.js",
-    "static/js/2.50ddc616.chunk.js",
-    "static/css/main.d78513d5.chunk.css",
-    "static/js/main.9e688b3d.chunk.js"
+    "static/css/main.b4b2b754.css",
+    "static/js/main.a6fb3060.js"
   ]
 }
