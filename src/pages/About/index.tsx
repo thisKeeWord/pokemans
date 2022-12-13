@@ -12,7 +12,7 @@ const About: FunctionComponent = () => (
       </ul>
       <div className="about-project" data-testid="about-project">
         <p className="main-desc">
-          <strong>Pokemans</strong>
+          <strong>Simple Pokedexer</strong>
           {' '}
           is a very basic, general pokedex.
           It does not contain information for pokemon outside of their base (or initial) region.
