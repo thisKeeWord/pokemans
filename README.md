@@ -1,9 +1,9 @@
-Pokemans
+Simple Pokedexer
 ==============
 
 ## About
 
-This is a generic, very basic pokedex application that can be viewed [here](https://pokemans.herokuapp.com)
+This is a generic, very basic pokedex application that can be viewed [here](https://simple-pokedexer.web.app)
 
 ## Running Locally
 1. clone the repository
