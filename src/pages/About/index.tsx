@@ -43,7 +43,7 @@ const About: FunctionComponent = () => (
         <a href="https://www.instagram.com/theonlyleonardk" target="_blank" rel="noreferrer" data-testid="media-icon">
           <i className="fa fa-instagram fa-lg gh grow icon-link" />
         </a>
-        <a href="https://leonardk.herokuapp.com" target="_blank" rel="noreferrer" data-testid="media-icon">
+        <a href="https://simple-pokedexer.web.app/" target="_blank" rel="noreferrer" data-testid="media-icon">
           <i className="fa fa-laptop fa-lg gh grow icon-link" />
         </a>
       </div>
