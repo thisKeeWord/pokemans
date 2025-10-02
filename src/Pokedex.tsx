@@ -1,25 +1,27 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router'
-import axios from 'axios'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
-import Generations from './components/Generations'
-import PokemonEntry from './components/PokemonEntry'
+import React, { FunctionComponent, useEffect, useState } from "react"
+import { useLocation, useParams } from "react-router"
+import axios from "axios"
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import Link from "@mui/material/Link"
+import Generations from "./components/Generations"
+import PokemonEntry from "./components/PokemonEntry"
 
-import './Pokedex.scss'
+import "./Pokedex.scss"
 
-const rootUrl = 'https://pokeapi.co/api/v2'
+const rootUrl = "https://pokeapi.co/api/v2"
 
 const Pokedex: FunctionComponent = () => {
   const [genList, setGenList] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
-  const [selectedPokemon, setSelectedPokemon] = useState<string>('')
+  const [error, setError] = useState<string>("")
+  const [selectedPokemon, setSelectedPokemon] = useState<string>("")
   const [pokemonEntry, setPokemonEntry] = useState<Record<any, any>>({})
-  const [pokemonEvolutionEntry, setPokemonEvolutionEntry] = useState<Record<any, any>>({})
+  const [pokemonEvolutionEntry, setPokemonEvolutionEntry] = useState<
+    Record<any, any>
+  >({})
 
   const params = useParams() as Record<any, any>
   const location = useLocation()
@@ -30,44 +32,70 @@ const Pokedex: FunctionComponent = () => {
       const pokemonDataResults = await axios.get(`${rootUrl}/pokemon/${name}`)
       return pokemonDataResults.data
     } catch (err: any) {
-      throw new Error(`Could not retrieve information about ${name}. ${err.message}`)
+      // should display message
+      throw new Error(
+        `Could not retrieve information about ${name}. ${err.message}`
+      )
     }
   }
 
   const getEvolutionData = async (name: string) => {
     try {
-      const evolutionDataResults = await axios.get(`${rootUrl}/pokemon-species/${name}`)
-      const evolutionChainResults = await axios.get(evolutionDataResults.data.evolution_chain.url)
+      const evolutionDataResults = await axios.get(
+        `${rootUrl}/pokemon-species/${name}`
+      )
+      const evolutionChainResults = await axios.get(
+        evolutionDataResults.data.evolution_chain.url
+      )
       return evolutionChainResults.data
     } catch (err: any) {
-      throw new Error(`Could not retrieve evolution chain data about ${name}. ${err.message}`)
+      throw new Error(
+        `Could not retrieve evolution chain data about ${name}. ${err.message}`
+      )
     }
   }
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      error && setError('')
+      error && setError("")
 
       try {
         const gensData = await axios.get(`${rootUrl}/generation/?limit=1500`)
         // eslint-disable-next-line no-restricted-syntax
-        const fetchResults = await Promise.all(gensData.data.results.map(async (data, index: number) => {
-          try {
-            const resultData = await axios.get(data.url)
-            // eslint-disable-next-line camelcase
-            const { pokemon_species, main_region } = resultData.data
-            const sortedData = pokemon_species.sort(
-              (a, b) => a.url.replace(/\D/g, '').slice(1) - b.url.replace(/\D/g, '').slice(1),
-            )
+        const fetchResults = await Promise.all(
+          gensData.data.results
+            .map(async (data, index: number) => {
+              try {
+                const resultData = await axios.get(data.url)
+                // eslint-disable-next-line camelcase
+                const { pokemon_species, main_region } = resultData.data
+                const sortedData = pokemon_species.sort(
+                  (a, b) =>
+                    a.url.replace(/\D/g, "").slice(1) -
+                    b.url.replace(/\D/g, "").slice(1)
+                )
 
-            return { region: main_region.name.charAt(0).toUpperCase() + main_region.name.slice(1), pokemonList: sortedData }
-          } catch (err: any) {
-            throw new Error(`An error occurred fetching the details of generation ${index + 1}`)
-          }
-        }).map((p) => p.catch((e: any) => {
-          throw e
-        })))
+                return {
+                  region:
+                    main_region.name.charAt(0).toUpperCase() +
+                    main_region.name.slice(1),
+                  pokemonList: sortedData,
+                }
+              } catch (err: any) {
+                throw new Error(
+                  `An error occurred fetching the details of generation ${
+                    index + 1
+                  }`
+                )
+              }
+            })
+            .map((p) =>
+              p.catch((e: any) => {
+                throw e
+              })
+            )
+        )
 
         setGenList(fetchResults)
       } catch (e: any) {
@@ -114,39 +142,40 @@ const Pokedex: FunctionComponent = () => {
             <Typography variant="h6" component="div">
               Simple Pokedexer
             </Typography>
-            <Link href="/about" className="about-link" data-testid="about">About</Link>
+            <Link href="/about" className="about-link" data-testid="about">
+              About
+            </Link>
             <div className="view">
-              <Generations genList={genList} state={state} selectedPokemon={selectedPokemon} />
+              <Generations
+                genList={genList}
+                state={state}
+                selectedPokemon={selectedPokemon}
+              />
             </div>
           </Toolbar>
         </AppBar>
       </Box>
-      {error && <span data-testid="error">{error || 'yo'}</span>}
+      {error && <span data-testid="error">{error || "yo"}</span>}
       {!Object.keys(pokemonEntry).length ? (
         <div className="home-info">
           <p className="main-desc">
-            <strong>Simple Pokedexer</strong>
-            {' '}
-            is a very basic, general pokedex.
-            It does not contain information for pokemon outside of their base (or initial) region.
+            <strong>Simple Pokedexer</strong> is a very basic, general pokedex.
+            It does not contain information for pokemon outside of their base
+            (or initial) region.
           </p>
           <span className="sub-desc">
-            To get started, click the
-            {' '}
-            <i>View Pokemon</i>
-            {' '}
-            button in the nav bar and select a region.
+            To get started, click the <i>View Pokemon</i> button in the nav bar
+            and select a region.
           </span>
           <span className="sub-desc">
-            You can also add
-            {' '}
-            <i>/pokemon/yourpokemonname</i>
-            {' '}
-            in the url.
+            You can also add <i>/pokemon/yourpokemonname</i> in the url.
           </span>
         </div>
       ) : (
-        <PokemonEntry pokemonEntry={pokemonEntry} pokemonEvolutionEntry={pokemonEvolutionEntry} />
+        <PokemonEntry
+          pokemonEntry={pokemonEntry}
+          pokemonEvolutionEntry={pokemonEvolutionEntry}
+        />
       )}
     </div>
   )
